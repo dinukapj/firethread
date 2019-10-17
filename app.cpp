@@ -1,12 +1,45 @@
 #include <iostream>
+#include <math.h>
 #include "firethreadpool.h"
 
 using namespace std;
 
+// FireThreadPool pool;
+
+//initialize a threadpool
 void initThreadPool()
 {
+    // pool = pool(21);
+    cout << "Thread pool initialized" << endl;
+}
+
+//calculate
+void runPrimer(int userInput)
+{
     FireThreadPool pool{36};
-    cout << "Thread pool initialized" <<endl ;
+    auto value = pool.enqueue([&] {
+        int count = 0;
+        for (int a = 2; a < userInput; a++)
+        {
+            bool prime = true;
+            for (int c = 2; c * c <= a; c++)
+            {
+                if (a % c == 0)
+                {
+                    prime = false;
+                    break;
+                }
+            }
+            if (prime)
+                count++;
+        }
+
+        return count;
+    });
+
+    cout << "Thread completed its work ✅" << endl;
+
+    cout << "Prime number count: " << value.get() << endl;
 }
 
 int main()
@@ -46,6 +79,10 @@ int main()
     else if (command == "prime")
     {
         printf("\nStarting Prime number example..\n\n");
+        cout << "Enter a number: ";
+        int number;
+        cin >> number;
+        runPrimer(number);
     }
     else if (command == "exit")
     {
