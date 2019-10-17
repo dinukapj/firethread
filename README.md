@@ -17,7 +17,9 @@ g++ -std=c++14 app.cpp
 ## Commands
 
 ✅ `restart` - this cleares the thread pool and re-initializes
+
 ✅  `prime` - run prime number example
+
 ✅  `exit` - exit program
 
 ## Author
