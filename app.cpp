@@ -3,6 +3,12 @@
 
 using namespace std;
 
+void initThreadPool()
+{
+    FireThreadPool pool{36};
+    cout << "Thread pool initialized" <<endl ;
+}
+
 int main()
 {
     //print the intro header
@@ -35,6 +41,7 @@ int main()
     if (command == "restart")
     {
         printf("\nRestarting thread pool..\n\n");
+        initThreadPool();
     }
     else if (command == "prime")
     {
